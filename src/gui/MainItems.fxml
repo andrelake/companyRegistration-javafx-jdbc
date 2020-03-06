@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainItemsController">
    <center>
       <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0" vgap="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="120.0" text="Public Company" />
+            <Button mnemonicParsing="false" onAction="#onBtnPublicCompanyAction" prefHeight="100.0" prefWidth="120.0" text="Public Company" />
             <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="120.0" text="Private Company" />
          </children>
          <padding>

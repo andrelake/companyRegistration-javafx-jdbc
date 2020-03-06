@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	private Stage primaryStage;
-	private BorderPane mainLayout;
+	private static BorderPane mainLayout;
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -22,7 +22,7 @@ public class Main extends Application {
 		showMainItems();
 	}
 
-	private void showMainItems() throws IOException {
+	public static void showMainItems() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/gui/MainItems.fxml"));
 		BorderPane mainItems = loader.load();
@@ -36,6 +36,13 @@ public class Main extends Application {
 		Scene scene = new Scene(mainLayout);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+	}
+	
+	public static void showPublicCompanyScene() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("/gui/PublicCompanyView.fxml"));
+		BorderPane publicCompany = loader.load();
+		mainLayout.setCenter(publicCompany);
 	}
 
 	public static void main(String[] args) {
