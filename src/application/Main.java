@@ -44,6 +44,13 @@ public class Main extends Application {
 		BorderPane publicCompany = loader.load();
 		mainLayout.setCenter(publicCompany);
 	}
+	
+	public static void showPrivateCompanyScene() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("/gui/PrivateCompanyView.fxml"));
+		BorderPane privateCompany = loader.load();
+		mainLayout.setCenter(privateCompany);
+	}
 
 	public static void main(String[] args) {
 		launch(args);

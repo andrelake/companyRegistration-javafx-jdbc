@@ -10,7 +10,7 @@
       <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0" vgap="20.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onAction="#onBtnPublicCompanyAction" prefHeight="100.0" prefWidth="120.0" text="Public Company" />
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="120.0" text="Private Company" />
+            <Button mnemonicParsing="false" onAction="#onBtnPrivateCompanyAction" prefHeight="100.0" prefWidth="120.0" text="Private Company" />
          </children>
          <padding>
             <Insets left="170.0" top="100.0" />

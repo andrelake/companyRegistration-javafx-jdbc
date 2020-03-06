@@ -13,4 +13,9 @@ public class MainItemsController {
 	private void onBtnPublicCompanyAction() throws IOException {
 		main.showPublicCompanyScene();
 	}
+	
+	@FXML
+	private void onBtnPrivateCompanyAction() throws IOException {
+		main.showPrivateCompanyScene();
+	}
 }
