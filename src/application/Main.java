@@ -17,7 +17,16 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws IOException {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Company Registration App");
+		
 		showMainView();
+		showMainItems();
+	}
+
+	private void showMainItems() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("/gui/MainItems.fxml"));
+		BorderPane mainItems = loader.load();
+		mainLayout.setCenter(mainItems);
 	}
 
 	private void showMainView() throws IOException {
