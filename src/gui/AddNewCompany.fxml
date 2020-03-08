@@ -16,12 +16,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AddNewCompanyController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefWidth="80.0" text="Ok" />
-            <Button mnemonicParsing="false" prefWidth="80.0" text="Cancel" />
+            <Button fx:id="btnOk" mnemonicParsing="false" onAction="#onBtnOkAction" prefWidth="80.0" text="Ok" />
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#onBtnCancelAction" prefWidth="80.0" text="Cancel" />
          </children>
       </HBox>
    </bottom>
@@ -58,11 +58,11 @@
                                     <Label text="City:" GridPane.rowIndex="2" />
                                     <Label text="Phone:" GridPane.rowIndex="3" />
                                     <Label text="Email:" GridPane.rowIndex="4" />
-                                    <TextField style="-fx-background-radius: 10;" GridPane.columnIndex="1" />
-                                    <TextField style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="txtFieldName" style="-fx-background-radius: 10;" GridPane.columnIndex="1" />
+                                    <TextField fx:id="txtFieldAdress" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtFieldCity" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="txtFieldPhone" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="txtFieldEmail" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                  </children>
                               </GridPane>
                            </children>
