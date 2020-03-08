@@ -34,7 +34,7 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/gui/MainView.fxml"));
 		mainLayout = loader.load();
-		Scene scene = new Scene(mainLayout);
+		Scene scene = new Scene(mainLayout, 800, 600);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
