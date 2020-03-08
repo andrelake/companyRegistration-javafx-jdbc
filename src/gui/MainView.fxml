@@ -14,9 +14,10 @@
       </ToolBar>
    </top>
    <bottom>
-      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#onBtnHomeAction" text="Home" />
+            <Button mnemonicParsing="false" onAction="#onBtnAddAction" prefWidth="80.0" text="Add" />
+            <Button mnemonicParsing="false" onAction="#onBtnHomeAction" prefWidth="80.0" text="Home" />
          </children>
       </HBox>
    </bottom>

@@ -14,4 +14,9 @@ public class MainViewController {
 		main.showMainItems();
 	}
 	
+	@FXML
+	private void onBtnAddAction() throws IOException {
+		main.showAddStage();
+	}
+	
 }

@@ -6,11 +6,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	private Stage primaryStage;
+	private static Stage primaryStage;
 	private static BorderPane mainLayout;
 	
 	@Override
@@ -52,6 +53,21 @@ public class Main extends Application {
 		mainLayout.setCenter(privateCompany);
 	}
 
+	public static void showAddStage() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("/gui/AddNewCompany.fxml"));
+		BorderPane addNewCompany = loader.load();
+		
+		Stage addDialogStage = new Stage();
+		addDialogStage.setTitle("Add New Company");
+		addDialogStage.initModality(Modality.WINDOW_MODAL);
+		addDialogStage.initOwner(primaryStage);
+		
+		Scene scene = new Scene(addNewCompany);
+		addDialogStage.setScene(scene);
+		addDialogStage.showAndWait();
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
