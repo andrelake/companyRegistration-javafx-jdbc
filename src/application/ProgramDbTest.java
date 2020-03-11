@@ -1,15 +1,21 @@
 package application;
 
-import java.sql.Connection;
+import java.util.List;
 
-import db.DB;
+import model.dao.CompanyDao;
+import model.dao.DaoFactory;
+import model.entities.Company;
 
 public class ProgramDbTest {
 
 	public static void main(String[] args) {
 
-		Connection conn = DB.getConnection();
+		//Test1 - Company findall
+		CompanyDao companyDao = DaoFactory.createcompanyDao();
 		
-		DB.closeConnection();
+		List<Company> list = companyDao.findAll();
+		for(Company company : list) {
+			System.out.println(company);
+		}
 	}
 }

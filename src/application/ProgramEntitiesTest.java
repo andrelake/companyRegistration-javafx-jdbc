@@ -14,7 +14,7 @@ public class ProgramEntitiesTest {
 		
 		System.out.println(comp + "\n");
 		
-		Contract contract = new Contract(2, new Date(), "10 years", "Semiannual", comp);
+		Contract contract = new Contract(2, new Date(), "10 years", "Semiannual", comp.getId(), comp.getType());
 		System.out.println(contract);
 	}
 }

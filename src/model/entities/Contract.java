@@ -8,16 +8,19 @@ public class Contract {
 	private Date date;
 	private String duration;
 	private String renewalType;
+	private Integer companyId;
+	private Integer companyType;
 	
 	private Company company;
 	
-	public Contract(Integer id, Date date, String duration, String renewalType, Company company) {
+	public Contract(Integer id, Date date, String duration, String renewalType, Integer companyId, Integer companyType) {
 	
 		this.id = id;
 		this.date = date;
 		this.duration = duration;
 		this.renewalType = renewalType;
-		this.company = company;
+		this.companyId = companyId;
+		this.companyType = companyType;
 	}
 
 	public Integer getId() {
@@ -50,6 +53,22 @@ public class Contract {
 
 	public void setRenewalType(String renewalType) {
 		this.renewalType = renewalType;
+	}
+	
+	public Integer getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(Integer companyId) {
+		this.companyId = companyId;
+	}
+
+	public Integer getCompanyType() {
+		return companyType;
+	}
+
+	public void setCompanyType(Integer companyType) {
+		this.companyType = companyType;
 	}
 
 	public Company getCompany() {
