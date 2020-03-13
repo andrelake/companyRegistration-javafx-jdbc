@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +21,40 @@ public class CompanyDaoJDBC implements CompanyDao {
 	}
 
 	@Override
-	public void insert(Company company) {
-		// TODO Auto-generated method stub
-
+	public void insert(Company obj) {
+		
+		String sql = "INSERT INTO company (Type, Name, Adress, City, Phone, Email, FantasyName, MainCategory, NationalId, "
+				+ "LegalStatus, TotalEmployees, AdministratorName) VALUES "
+				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try(PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+			
+			st.setInt(1, obj.getType());
+			st.setString(2, obj.getName());
+			st.setString(3, obj.getAdress());
+			st.setString(4, obj.getCity());
+			st.setString(5, obj.getPhone());
+			st.setString(6, obj.getEmail());
+			st.setString(7, obj.getFantasyName());
+			st.setString(8, obj.getMainCategory());
+			st.setString(9, obj.getNationalId());
+			st.setString(10, obj.getLegalStatus());
+			st.setInt(11, obj.getTotalEmployees());
+			st.setString(12, obj.getAdmName());
+			
+			int rowsAffected = st.executeUpdate();
+			if(rowsAffected > 0) {
+				try(ResultSet rs = st.getGeneratedKeys()) {
+					if(rs.next()) {
+						int id = rs.getInt(1);
+						obj.setId(id);
+					}
+				}
+			}
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
 	}
 
 	@Override
@@ -71,9 +103,7 @@ public class CompanyDaoJDBC implements CompanyDao {
 
 			try (ResultSet rs = st.getResultSet()) {
 				while (rs.next()) {
-					Company company = new Company(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),
-							rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),
-							rs.getString(10), rs.getString(11), rs.getInt(12), rs.getString(13));
+					Company company = instantiateCompany(rs);
 					
 					list.add(company);
 				}
