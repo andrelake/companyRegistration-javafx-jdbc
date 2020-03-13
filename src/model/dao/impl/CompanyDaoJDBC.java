@@ -29,18 +29,7 @@ public class CompanyDaoJDBC implements CompanyDao {
 		
 		try(PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 			
-			st.setInt(1, obj.getType());
-			st.setString(2, obj.getName());
-			st.setString(3, obj.getAdress());
-			st.setString(4, obj.getCity());
-			st.setString(5, obj.getPhone());
-			st.setString(6, obj.getEmail());
-			st.setString(7, obj.getFantasyName());
-			st.setString(8, obj.getMainCategory());
-			st.setString(9, obj.getNationalId());
-			st.setString(10, obj.getLegalStatus());
-			st.setInt(11, obj.getTotalEmployees());
-			st.setString(12, obj.getAdmName());
+			setStatement(st, obj);
 			
 			int rowsAffected = st.executeUpdate();
 			if(rowsAffected > 0) {
@@ -58,9 +47,21 @@ public class CompanyDaoJDBC implements CompanyDao {
 	}
 
 	@Override
-	public void update(Company company) {
-		// TODO Auto-generated method stub
+	public void update(Company obj) {
+		
+		String sql = "UPDATE company SET "
+				+ "Type = ?, Name = ?, Adress = ?, City = ?, Phone = ?, Email = ?, FantasyName = ?, MainCategory = ?, "
+				+ "NationalId = ?, LegalStatus = ?, TotalEmployees = ?, AdministratorName = ? WHERE Id = ?";
 
+		try(PreparedStatement st = conn.prepareStatement(sql)) {
+			
+			setStatement(st, obj);
+			st.setInt(13, obj.getId());
+			st.executeUpdate();
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
 	}
 
 	@Override
@@ -121,5 +122,20 @@ public class CompanyDaoJDBC implements CompanyDao {
 				rs.getString(10), rs.getString(11), rs.getInt(12), rs.getString(13));
 		
 		return company;
+	}
+	
+	public void setStatement(PreparedStatement st, Company obj) throws SQLException {
+		st.setInt(1, obj.getType());
+		st.setString(2, obj.getName());
+		st.setString(3, obj.getAdress());
+		st.setString(4, obj.getCity());
+		st.setString(5, obj.getPhone());
+		st.setString(6, obj.getEmail());
+		st.setString(7, obj.getFantasyName());
+		st.setString(8, obj.getMainCategory());
+		st.setString(9, obj.getNationalId());
+		st.setString(10, obj.getLegalStatus());
+		st.setInt(11, obj.getTotalEmployees());
+		st.setString(12, obj.getAdmName());
 	}
 }

@@ -23,10 +23,15 @@ public class ProgramDbTest {
 //		System.out.println(company);
 		
 		//Test3 - Company insert
-		Company comp = new Company(null, 1, "Blabla Ltda", "Rua blablabla 123", "Ourinhos", "5514989890000", "blabla@gmail.com", 
-				"Associacao Blablabla E cia Ltda", "Eletrodomésticos", "04234154009313", "Inactive", 54, "Nestor Silva");
+		Company comp = new Company(null, 0, "Prefeitura de Mimimi", "Rua mimimi 443", "Mimimi", "5512949596070", "prefmimimi@gmail.com", 
+				"Prefeitura Municipal de Mimimi", "Public agency", "02333258001109", "Active", 100, "Vandir Cunha");
 		
 		companyDao.insert(comp);
+		
+		//Test4 - Company update
+//		Company comp = companyDao.findById(2);
+//		comp.setCity("Chavantes");;
+//		companyDao.update(comp);
 		
 	}
 }
