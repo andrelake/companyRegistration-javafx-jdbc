@@ -13,9 +13,13 @@ public class ProgramDbTest {
 		//Test1 - Company findall
 		CompanyDao companyDao = DaoFactory.createcompanyDao();
 		
-		List<Company> list = companyDao.findAll();
-		for(Company company : list) {
-			System.out.println(company);
-		}
+//		List<Company> list = companyDao.findAll();
+//		for(Company company : list) {
+//			System.out.println(company);
+//		}
+		
+		//Test2 - Company findById
+		Company company = companyDao.findById(1);
+		System.out.println(company);
 	}
 }

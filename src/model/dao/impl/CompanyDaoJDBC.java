@@ -10,7 +10,6 @@ import java.util.List;
 import db.DbException;
 import model.dao.CompanyDao;
 import model.entities.Company;
-import model.entities.Contract;
 
 public class CompanyDaoJDBC implements CompanyDao {
 
@@ -40,8 +39,24 @@ public class CompanyDaoJDBC implements CompanyDao {
 
 	@Override
 	public Company findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String sql = "SELECT * FROM company WHERE Id = ?";
+		Company company = null;
+		
+		try(PreparedStatement st = conn.prepareStatement(sql)) {
+			st.setInt(1, id);
+			st.execute();
+			
+			try(ResultSet rs = st.getResultSet()) {
+				while (rs.next()) {
+					company = instantiateCompany(rs);
+				}
+			}
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		return company;
 	}
 
 	@Override
@@ -67,5 +82,14 @@ public class CompanyDaoJDBC implements CompanyDao {
 			throw new DbException(e.getMessage());
 		}
 		return list;
+	}
+	
+	public Company instantiateCompany(ResultSet rs) throws SQLException {
+		
+		Company company = new Company(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),
+				rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),
+				rs.getString(10), rs.getString(11), rs.getInt(12), rs.getString(13));
+		
+		return company;
 	}
 }
