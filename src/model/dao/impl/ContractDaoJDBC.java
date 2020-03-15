@@ -42,11 +42,32 @@ public class ContractDaoJDBC implements ContractDao {
 
 	@Override
 	public Contract findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String sql = "SELECT contractinfo.*,company.Name as CompanyName "
+				+ "FROM contractinfo INNER JOIN company "
+				+ "ON contractinfo.CompanyId = company.Id "
+				+ "WHERE contractinfo.Id = ?";
+				
+		try(PreparedStatement st = conn.prepareStatement(sql)) {
+			st.setInt(1, id);
+			st.executeQuery();
+			
+			try(ResultSet rs = st.getResultSet()) {
+				
+				if(rs.next()) {
+					Company comp = instantiateCompany(rs);
+					Contract cont = instantiateContract(rs, comp);
+					return cont;
+				}
+				else {
+					throw new DbException("Id not found.");
+				}
+			}
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
 	}
-	
-
 
 	@Override
 	public List<Contract> findAll(){

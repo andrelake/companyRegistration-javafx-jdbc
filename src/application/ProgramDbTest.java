@@ -40,10 +40,14 @@ public class ProgramDbTest {
 		
 		//Contract Tests
 		//Test1 - Contract findAll
-		List<Contract> list = contractDao.findAll();
-		for(Contract cont : list) {
-			System.out.println(cont);
-		}
+//		List<Contract> list = contractDao.findAll();
+//		for(Contract cont : list) {
+//			System.out.println(cont);
+//		}
+		
+		//Test2 - Contract findById
+		Contract cont = contractDao.findById(1);
+		System.out.println(cont);
 		
 	}
 }
