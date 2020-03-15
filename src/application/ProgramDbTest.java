@@ -1,17 +1,19 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.dao.CompanyDao;
 import model.dao.ContractDao;
 import model.dao.DaoFactory;
+import model.entities.Company;
 import model.entities.Contract;
 
 public class ProgramDbTest {
 
 	public static void main(String[] args) {
 
-//		CompanyDao companyDao = DaoFactory.createcompanyDao();
+		CompanyDao companyDao = DaoFactory.createcompanyDao();
 		ContractDao contractDao = DaoFactory.createcontractDao();
 		
 		//Test1 - Company findall		
@@ -46,8 +48,14 @@ public class ProgramDbTest {
 //		}
 		
 		//Test2 - Contract findById
-		Contract cont = contractDao.findById(1);
-		System.out.println(cont);
+//		Contract cont = contractDao.findById(1);
+//		System.out.println(cont);
 		
+		//Test3 - Contract findByCompany
+		Company comp = companyDao.findById(2);
+		List<Contract> list = contractDao.findByCompany(comp);
+		for(Contract cont : list) {
+			System.out.println(cont);
+		}
 	}
 }

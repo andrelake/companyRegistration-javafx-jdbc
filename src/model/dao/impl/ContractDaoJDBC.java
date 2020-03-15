@@ -106,8 +106,39 @@ public class ContractDaoJDBC implements ContractDao {
 
 	@Override
 	public List<Contract> findByCompany(Company company) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String sql = "SELECT contractinfo.*, company.Name as CompName "
+				+ "FROM contractinfo INNER JOIN company "
+				+ "ON contractinfo.CompanyId = company.Id "
+				+ "WHERE CompanyId = ?";
+		
+		try(PreparedStatement st = conn.prepareStatement(sql)){
+			st.setInt(1, company.getId());
+			st.executeQuery();
+			
+			List<Contract> list = new ArrayList<>();
+			Map<Integer, Company> map = new HashMap<>();
+			
+			try(ResultSet rs = st.getResultSet()){
+				
+				while(rs.next()) {
+					
+					Company comp = map.get(rs.getInt("CompanyId"));
+					
+					if(comp == null) {
+						comp = instantiateCompany(rs);
+						map.put(rs.getInt("CompanyId"), comp);
+					}
+					
+					Contract cont = instantiateContract(rs, comp); 
+					list.add(cont);
+				}
+			}
+			return list;
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
 	}
 	
 	private Contract instantiateContract(ResultSet rs, Company comp) throws SQLException {
