@@ -34,6 +34,12 @@ public class Company {
 		this.totalEmployees = totalEmployees;
 		this.admName = admName;
 	}
+	
+	public Company(Integer id, Integer type, String name) {
+		this.id = id;
+		this.type = type;
+		this.name = name;
+	}
 
 	public Integer getId() {
 		return id;

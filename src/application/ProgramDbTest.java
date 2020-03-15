@@ -3,14 +3,16 @@ package application;
 import java.util.List;
 
 import model.dao.CompanyDao;
+import model.dao.ContractDao;
 import model.dao.DaoFactory;
-import model.entities.Company;
+import model.entities.Contract;
 
 public class ProgramDbTest {
 
 	public static void main(String[] args) {
 
-		CompanyDao companyDao = DaoFactory.createcompanyDao();
+//		CompanyDao companyDao = DaoFactory.createcompanyDao();
+		ContractDao contractDao = DaoFactory.createcontractDao();
 		
 		//Test1 - Company findall		
 //		List<Company> list = companyDao.findAll();
@@ -34,7 +36,14 @@ public class ProgramDbTest {
 //		companyDao.update(comp);
 		
 		//Test5 - Company delete
-		companyDao.deleteById(3);
+//		companyDao.deleteById(3);
+		
+		//Contract Tests
+		//Test1 - Contract findAll
+		List<Contract> list = contractDao.findAll();
+		for(Contract cont : list) {
+			System.out.println(cont);
+		}
 		
 	}
 }

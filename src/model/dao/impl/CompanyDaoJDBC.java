@@ -128,7 +128,7 @@ public class CompanyDaoJDBC implements CompanyDao {
 		return list;
 	}
 	
-	public Company instantiateCompany(ResultSet rs) throws SQLException {
+	private Company instantiateCompany(ResultSet rs) throws SQLException {
 		
 		Company company = new Company(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),
 				rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),
@@ -137,7 +137,7 @@ public class CompanyDaoJDBC implements CompanyDao {
 		return company;
 	}
 	
-	public void setStatement(PreparedStatement st, Company obj) throws SQLException {
+	private void setStatement(PreparedStatement st, Company obj) throws SQLException {
 		st.setInt(1, obj.getType());
 		st.setString(2, obj.getName());
 		st.setString(3, obj.getAdress());
