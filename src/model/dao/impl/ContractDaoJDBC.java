@@ -34,11 +34,7 @@ public class ContractDaoJDBC implements ContractDao {
 		
 		try(PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 			
-			st.setDate(1, (Date) contract.getDate());
-			st.setString(2, contract.getDuration());
-			st.setString(3, contract.getRenewalType());
-			st.setInt(4, contract.getCompany().getId());
-			st.setInt(5, contract.getCompany().getType());
+			setStatement(contract, st);
 			
 			int rowsAffected = st.executeUpdate();
 			if(rowsAffected > 0) {
@@ -57,8 +53,20 @@ public class ContractDaoJDBC implements ContractDao {
 
 	@Override
 	public void update(Contract contract) {
-		// TODO Auto-generated method stub
-
+		
+		String sql = "UPDATE contractinfo SET "
+				+ "Date = ?, Duration = ?, RenewalType = ?, CompanyId = ?, CompanyType = ? "
+				+ "WHERE Id = ?";
+		
+		try(PreparedStatement st = conn.prepareStatement(sql)) {
+			
+			setStatement(contract, st);
+			st.setInt(6, contract.getId());
+			st.executeUpdate();
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
 	}
 
 	@Override
@@ -183,5 +191,14 @@ public class ContractDaoJDBC implements ContractDao {
 		Company company = new Company(rs.getInt(5), rs.getInt(6), rs.getString(7));
 		
 		return company;
+	}
+	
+
+	private void setStatement(Contract contract, PreparedStatement st) throws SQLException {
+		st.setDate(1, (Date) contract.getDate());
+		st.setString(2, contract.getDuration());
+		st.setString(3, contract.getRenewalType());
+		st.setInt(4, contract.getCompany().getId());
+		st.setInt(5, contract.getCompany().getType());
 	}
 }
