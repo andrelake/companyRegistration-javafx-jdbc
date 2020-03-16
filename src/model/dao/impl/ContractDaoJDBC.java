@@ -71,8 +71,21 @@ public class ContractDaoJDBC implements ContractDao {
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-
+		
+		String sql = "DELETE FROM contractinfo WHERE Id = ?";
+		
+		try(PreparedStatement st = conn.prepareStatement(sql)) {
+			
+			st.setInt(1, id);
+			
+			int rowsAffected = st.executeUpdate();
+			if(rowsAffected == 0) {
+				throw new DbException("Id not found");
+			}
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
 	}
 
 	@Override

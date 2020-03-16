@@ -64,8 +64,11 @@ public class ProgramDbTest {
 //		contractDao.insert(cont);
 		
 		//Test5 - Contract update
-		Contract cont = contractDao.findById(4);
-		cont.setRenewalType("Semiannual");
-		contractDao.update(cont);
+//		Contract cont = contractDao.findById(4);
+//		cont.setRenewalType("Semiannual");
+//		contractDao.update(cont);
+		
+		//Test6 - Contract deleteById
+		contractDao.deleteById(4);
 	}
 }
