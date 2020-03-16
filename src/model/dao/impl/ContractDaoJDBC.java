@@ -1,6 +1,7 @@
 package model.dao.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.mysql.jdbc.Statement;
 
 import db.DbException;
 import model.dao.ContractDao;
@@ -24,8 +27,32 @@ public class ContractDaoJDBC implements ContractDao {
 
 	@Override
 	public void insert(Contract contract) {
-		// TODO Auto-generated method stub
-
+		
+		String sql = "INSERT INTO contractinfo "
+				+ "(Date, Duration, RenewalType, CompanyId, CompanyType) VALUES "
+				+ "(?, ?, ?, ?, ?)";
+		
+		try(PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+			
+			st.setDate(1, (Date) contract.getDate());
+			st.setString(2, contract.getDuration());
+			st.setString(3, contract.getRenewalType());
+			st.setInt(4, contract.getCompany().getId());
+			st.setInt(5, contract.getCompany().getType());
+			
+			int rowsAffected = st.executeUpdate();
+			if(rowsAffected > 0) {
+				try(ResultSet rs = st.getGeneratedKeys()) {
+					if(rs.next()) {
+						int id = rs.getInt(1);
+						contract.setId(id);
+					}
+				}
+			}
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
 	}
 
 	@Override

@@ -1,7 +1,8 @@
 package application;
 
-import java.util.ArrayList;
-import java.util.List;
+
+
+import java.util.Calendar;
 
 import model.dao.CompanyDao;
 import model.dao.ContractDao;
@@ -52,10 +53,14 @@ public class ProgramDbTest {
 //		System.out.println(cont);
 		
 		//Test3 - Contract findByCompany
-		Company comp = companyDao.findById(2);
-		List<Contract> list = contractDao.findByCompany(comp);
-		for(Contract cont : list) {
-			System.out.println(cont);
-		}
+		Company comp = companyDao.findById(1);
+//		List<Contract> list = contractDao.findByCompany(comp);
+//		for(Contract cont : list) {
+//			System.out.println(cont);
+//		}
+		
+		//Test4 - Contract insert
+		Contract cont = new Contract(null, new java.sql.Date(Calendar.getInstance().getTime().getTime()), "3 years", "Yearly", comp);
+		contractDao.insert(cont);
 	}
 }
