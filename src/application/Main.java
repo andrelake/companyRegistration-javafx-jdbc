@@ -2,12 +2,14 @@ package application;
 
 import java.io.IOException;
 
+import gui.PublicCompanyListController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.services.CompanyService;
 
 public class Main extends Application {
 
@@ -44,6 +46,10 @@ public class Main extends Application {
 		loader.setLocation(Main.class.getResource("/gui/PublicCompanyView.fxml"));
 		BorderPane publicCompany = loader.load();
 		mainLayout.setCenter(publicCompany);
+		
+		PublicCompanyListController controller = loader.getController(); // tableview
+		controller.setCompanyService(new CompanyService());
+		controller.updateTableView();
 	}
 	
 	public static void showPrivateCompanyScene() throws IOException {
