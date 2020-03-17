@@ -66,11 +66,11 @@
                                           <Label text="City:" GridPane.rowIndex="2" />
                                           <Label text="Phone:" GridPane.rowIndex="3" />
                                           <Label text="Email:" GridPane.rowIndex="4" />
-                                          <Label GridPane.columnIndex="1" />
-                                          <Label GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Label GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <Label GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                          <Label GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <Label fx:id="lblName" GridPane.columnIndex="1" />
+                                          <Label fx:id="lblAdress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Label fx:id="lblCity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label fx:id="lblPhone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <Label fx:id="lblEmail" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                           <Label text="Contract Info" GridPane.rowIndex="5">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
@@ -79,9 +79,9 @@
                                           <Label text="Date:" GridPane.rowIndex="6" />
                                           <Label text="Duration:" GridPane.rowIndex="7" />
                                           <Label text="Renewal Type:" GridPane.rowIndex="8" />
-                                          <Label GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                          <Label GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                          <Label GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                          <Label fx:id="lblDate" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                          <Label fx:id="lblDuration" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                          <Label fx:id="lblRenewalType" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                                        </children>
                                     </GridPane>
                                  </children></AnchorPane>

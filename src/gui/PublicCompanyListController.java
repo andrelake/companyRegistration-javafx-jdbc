@@ -4,10 +4,12 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,6 +20,7 @@ public class PublicCompanyListController implements Initializable{
 
 	private CompanyService service;
 	
+	//AnchorPane > TableView
 	@FXML
 	private TableView<Company> tableViewPublicCompany;
 	
@@ -25,6 +28,33 @@ public class PublicCompanyListController implements Initializable{
 	private TableColumn<Company, String> tableColumnRegistered;
 	
 	private ObservableList<Company> registeredList;
+	
+	//AnchorPane > TabPane
+	//BasicInfo
+	@FXML
+	private Label lblName;
+	
+	@FXML
+	private Label lblAdress;
+	
+	@FXML
+	private Label lblCity;
+	
+	@FXML
+	private Label lblPhone;
+	
+	@FXML
+	private Label lblEmail;
+	
+	@FXML
+	private Label lblDate;
+
+	@FXML
+	private Label lblDuration;
+	
+	@FXML
+	private Label lblRenewalType;
+	
 	
 	public void setCompanyService(CompanyService service) {
 		this.service = service;

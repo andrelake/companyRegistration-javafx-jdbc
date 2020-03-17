@@ -3,6 +3,7 @@ package gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -71,5 +72,11 @@ public class AddNewCompanyController implements Initializable{
 	public void initialize(URL url, ResourceBundle rb) {
 		choiceBoxType.setItems(typeList);
 		comboBoxLegalStatus.setItems(legalStatusList);
+		initializeNodes();
+	}
+
+	private void initializeNodes() {
+		Utils.formatDatePicker(datePickerContract, "dd/MM/yyyy");
+		
 	}
 }

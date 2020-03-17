@@ -192,7 +192,7 @@ public class ContractDaoJDBC implements ContractDao {
 	private Contract instantiateContract(ResultSet rs, Company comp) throws SQLException {
 		Contract contract = new Contract();
 		contract.setId(rs.getInt("Id"));
-		contract.setDate(rs.getDate("Date"));
+		contract.setDate(new java.util.Date(rs.getTimestamp("Date").getTime()));
 		contract.setDuration(rs.getString("Duration"));
 		contract.setRenewalType(rs.getString("RenewalType"));
 		contract.setCompany(comp);
