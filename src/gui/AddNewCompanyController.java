@@ -13,13 +13,27 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import model.entities.Company;
+import model.entities.Contract;
+import model.services.CompanyService;
+import model.services.ContractService;
 
 public class AddNewCompanyController implements Initializable{
 
 	ObservableList<String> typeList = FXCollections.observableArrayList("Semiannual", "Yearly");
 	ObservableList<String> legalStatusList = FXCollections.observableArrayList("Active", "Inactive");
 	
+	private Contract cont;
+	
+	private Company entity;
+	
+	private CompanyService service;
+	
+	private ContractService servicecont;
+	
 	// Basic Info
+	@FXML
+	private TextField txtFieldType;
 	@FXML
 	private TextField txtFieldName;
 	@FXML
@@ -58,11 +72,64 @@ public class AddNewCompanyController implements Initializable{
 	@FXML
 	private Button btnCancel;
 	
-	@FXML
-	public void onBtnOkAction() {
-		System.out.println("onBtnOkAction");
+	public Contract getCont() {
+		return cont;
+	}
+
+	public void setContract(Contract cont) {
+		this.cont = cont;
+	}
+
+	public Company getEntity() {
+		return entity;
+	}
+
+	public void setCompany(Company entity) {
+		this.entity = entity;
+	}
+
+	public void setCompanyService(CompanyService service) {
+		this.service = service;
 	}
 	
+	public void setContractService(ContractService service) {
+		this.servicecont = service;
+	}
+	@FXML
+	public void onBtnOkAction() {
+		entity = getFormDataCompany();
+		cont = getFormDataContract();
+		service.saveOrUpdate(entity);
+		servicecont.saveOrUpdate(cont);
+	}
+	
+	private Contract getFormDataContract() {
+		Contract contract = new Contract();
+		contract.setDate(Utils.tryLocalDateToDate(datePickerContract));
+		contract.setDuration(txtFieldDuration.getText());
+		contract.setRenewalType(choiceBoxType.getValue());
+		contract.setCompany(entity);
+		return contract;
+	}
+
+	private Company getFormDataCompany() {
+		Company obj = new Company();
+		obj.setId(Utils.tryParseToInt(txtFieldId.getText()));
+		obj.setType(Utils.tryParseToInt(txtFieldType.getText()));
+		obj.setName(txtFieldName.getText());
+		obj.setAdress(txtFieldAdress.getText());
+		obj.setCity(txtFieldCity.getText());
+		obj.setPhone(txtFieldPhone.getText());
+		obj.setEmail(txtFieldEmail.getText());
+		obj.setFantasyName(txtFieldFantasyName.getText());
+		obj.setMainCategory(txtFieldMainCategory.getText());
+		obj.setNationalId(txtFieldNationalId.getText());
+		obj.setLegalStatus(comboBoxLegalStatus.getValue());
+		obj.setTotalEmployees(Utils.tryParseToInt(txtFieldTotalEmployees.getText()));
+		obj.setAdmName(txtFieldAdministratorName.getText());
+		return obj;
+	}
+
 	@FXML
 	public void onBtnCancelAction() {
 		System.out.println("onBtnCancelAction");

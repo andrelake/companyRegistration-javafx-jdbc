@@ -14,4 +14,13 @@ public class CompanyService {
 		
 		return dao.findAll();
 	}
+	
+	public void saveOrUpdate(Company obj) {
+		if(obj.getId() == null) {
+			dao.insert(obj);
+		}
+		else {
+			dao.update(obj);
+		}
+	}
 }

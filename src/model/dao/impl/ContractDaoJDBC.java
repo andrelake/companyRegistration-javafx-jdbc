@@ -13,6 +13,7 @@ import java.util.Map;
 import com.mysql.jdbc.Statement;
 
 import db.DbException;
+import gui.util.Utils;
 import model.dao.ContractDao;
 import model.entities.Company;
 import model.entities.Contract;
@@ -208,7 +209,7 @@ public class ContractDaoJDBC implements ContractDao {
 	
 
 	private void setStatement(Contract contract, PreparedStatement st) throws SQLException {
-		st.setDate(1, (Date) contract.getDate());
+		st.setDate(1, (new java.sql.Date(contract.getDate().getTime())));
 		st.setString(2, contract.getDuration());
 		st.setString(3, contract.getRenewalType());
 		st.setInt(4, contract.getCompany().getId());

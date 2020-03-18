@@ -16,6 +16,9 @@ public class Company {
 	private Integer totalEmployees;
 	private String admName;
 	
+	public Company() {
+	}
+	
 	public Company(Integer id, Integer type, String name, String adress, String city, String phone, String email,
 			String fantasyName, String mainCategory, String nationalId, String legalStatus, Integer totalEmployees,
 			String admName) {

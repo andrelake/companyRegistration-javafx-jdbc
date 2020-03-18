@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 
+import gui.AddNewCompanyController;
 import gui.PublicCompanyListController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.entities.Company;
+import model.entities.Contract;
 import model.services.CompanyService;
+import model.services.ContractService;
 
 public class Main extends Application {
 
@@ -59,10 +63,16 @@ public class Main extends Application {
 		mainLayout.setCenter(privateCompany);
 	}
 
-	public static void showAddStage() throws IOException {
+	public static void showAddStage(Company entity, Contract cont) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/gui/AddNewCompany.fxml"));
 		BorderPane addNewCompany = loader.load();
+		
+		AddNewCompanyController controller = loader.getController();
+		controller.setCompany(entity);
+		controller.setContract(cont);
+		controller.setCompanyService(new CompanyService());
+		controller.setContractService(new ContractService());
 		
 		Stage addDialogStage = new Stage();
 		addDialogStage.setTitle("Add New Company");
