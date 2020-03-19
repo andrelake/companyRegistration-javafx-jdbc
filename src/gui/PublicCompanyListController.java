@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -81,5 +80,4 @@ public class PublicCompanyListController implements Initializable{
 		registeredList = FXCollections.observableArrayList(list);
 		tableViewPublicCompany.setItems(registeredList);
 	}
-
 }

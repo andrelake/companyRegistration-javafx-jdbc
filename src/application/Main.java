@@ -15,10 +15,12 @@ import model.entities.Contract;
 import model.services.CompanyService;
 import model.services.ContractService;
 
-public class Main extends Application {
+public class Main extends Application{
 
 	private static Stage primaryStage;
 	private static BorderPane mainLayout;
+	
+	private static PublicCompanyListController publicCompanyListController;
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -51,9 +53,10 @@ public class Main extends Application {
 		BorderPane publicCompany = loader.load();
 		mainLayout.setCenter(publicCompany);
 		
-		PublicCompanyListController controller = loader.getController(); // tableview
-		controller.setCompanyService(new CompanyService());
-		controller.updateTableView();
+		publicCompanyListController = loader.getController(); // tableview
+		publicCompanyListController.setCompanyService(new CompanyService());
+		publicCompanyListController.updateTableView();
+		
 	}
 	
 	public static void showPrivateCompanyScene() throws IOException {
@@ -73,6 +76,7 @@ public class Main extends Application {
 		controller.setContract(cont);
 		controller.setCompanyService(new CompanyService());
 		controller.setContractService(new ContractService());
+		controller.setPublicCompanyListController(publicCompanyListController);
 		
 		Stage addDialogStage = new Stage();
 		addDialogStage.setTitle("Add New Company");

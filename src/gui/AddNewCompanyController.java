@@ -24,6 +24,8 @@ public class AddNewCompanyController implements Initializable{
 	ObservableList<String> typeList = FXCollections.observableArrayList("Semiannual", "Yearly");
 	ObservableList<String> legalStatusList = FXCollections.observableArrayList("Active", "Inactive");
 	
+	private PublicCompanyListController publicCompanyListController;
+	
 	private Contract cont;
 	
 	private Company entity;
@@ -73,6 +75,10 @@ public class AddNewCompanyController implements Initializable{
 	@FXML
 	private Button btnCancel;
 	
+	public void setPublicCompanyListController(PublicCompanyListController publicCompanyListController) {
+		this.publicCompanyListController = publicCompanyListController;
+	}
+	
 	public Contract getCont() {
 		return cont;
 	}
@@ -96,12 +102,14 @@ public class AddNewCompanyController implements Initializable{
 	public void setContractService(ContractService service) {
 		this.servicecont = service;
 	}
+
 	@FXML
 	public void onBtnOkAction(ActionEvent event) {
 		entity = getFormDataCompany();
 		cont = getFormDataContract();
 		service.saveOrUpdate(entity);
 		servicecont.saveOrUpdate(cont);
+		publicCompanyListController.updateTableView();
 		Utils.currentStage(event).close();
 	}
 	
