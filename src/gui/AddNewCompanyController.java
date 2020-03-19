@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -96,11 +97,12 @@ public class AddNewCompanyController implements Initializable{
 		this.servicecont = service;
 	}
 	@FXML
-	public void onBtnOkAction() {
+	public void onBtnOkAction(ActionEvent event) {
 		entity = getFormDataCompany();
 		cont = getFormDataContract();
 		service.saveOrUpdate(entity);
 		servicecont.saveOrUpdate(cont);
+		Utils.currentStage(event).close();
 	}
 	
 	private Contract getFormDataContract() {
@@ -131,8 +133,8 @@ public class AddNewCompanyController implements Initializable{
 	}
 
 	@FXML
-	public void onBtnCancelAction() {
-		System.out.println("onBtnCancelAction");
+	public void onBtnCancelAction(ActionEvent event) {
+		Utils.currentStage(event).close();
 	}
 
 	@Override
